@@ -1,8 +1,8 @@
-import Home from "@/page-template/private/Home";
 import React from "react";
+import Alimentos from "@/page-template/private/Alimentos";
 
 type Props = {};
 
 export default function index({}: Props) {
-  return <Home />;
+  return <Alimentos />;
 }
