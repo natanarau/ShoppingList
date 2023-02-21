@@ -28,4 +28,10 @@ export const palette: PaletteOptions = {
     light: "#edda42",
 
   },
+  success: {
+    main: "#99cc33",
+  },
+  error: {
+    main: "#cc3300"
+  }
 };

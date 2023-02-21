@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled(Box)`
   position: relative;
-  background-color: ${theme.palette.grey[300]};
+  background-color: ${theme.palette.grey[100]};
   max-width: 60vw;
   max-height: 80vh;
   padding: 30px;
