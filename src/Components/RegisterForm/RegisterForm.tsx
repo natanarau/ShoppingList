@@ -3,7 +3,11 @@ import React from "react";
 import Input from "@/Components/Input";
 import * as S from "./styles";
 import Button from "../Button";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth } from "@/service/firebase";
 import { useNotifications } from "@/hooks/useNotifications";
 import Notifications from "../Notification";
@@ -15,18 +19,26 @@ export default function RegisterForm({}: Props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordConfirm, setPasswordConfirm] = React.useState("");
-  const {setVisible, setCode} = useNotifications()
-  
+  const { setVisible, setCode, setToken } = useNotifications();
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        setCode("success")
-        setVisible(true);
+        const user = auth.currentUser;
+        if (user) {
+          updateProfile(user, {
+            displayName: name,
+          });
+          sendEmailVerification(user).then(() => {
+            setCode("success");
+            setVisible(true);
+          });
+        }
       })
       .catch((error) => {
-        setCode(error.code)
+        setCode(error.code);
         setVisible(true);
       });
   };
@@ -91,7 +103,7 @@ export default function RegisterForm({}: Props) {
           Cadastrar
         </Button>
       </S.RegisterFormBox>
-      <Notifications />
+      <Notifications email={email} />
     </S.Wrapper>
   );
 }

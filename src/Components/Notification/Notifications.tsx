@@ -6,8 +6,14 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import * as S from './styles'
 
-export const Notifications = () => {
+type NotificatioType = {
+  email?: string
+}
+
+export const Notifications = ({ email }: NotificatioType) => {
   const { visible, setVisible, code } = useNotifications();
+
+
 
   const data = [
     {
@@ -25,8 +31,14 @@ export const Notifications = () => {
     {
       code: "success",
       title: "Sucesso!",
-      description: "Você se cadastrou com sucesso! Aproveite o sistema :)",
+      description: <>Acesse seu e-mail <b>{email}</b> e confirme o cadastro.</>, 
       icon: <CheckCircleOutlineIcon color="success"/>,
+    },
+    {
+      code: 401,
+      title: "Atenção!",
+      description: <>Você ainda não validou seu e-mail, verifique sua caixa de entrada e confirme o cadastro.</>, 
+      icon: <WarningAmberIcon  color="error"/>,
     },
   ];
 
@@ -35,8 +47,8 @@ export const Notifications = () => {
   return (
     <Modal open={visible} onClose={() => setVisible(false)}>
       <>
-        {unique.map((e) => (
-          <Box display="grid" justifyItems="center">
+        {unique.map((e, index) => (
+          <Box key={index} display="grid" justifyItems="center">
             <S.BoxIcon>{e.icon}</S.BoxIcon>
             <Box component="h1">{e.title}</Box>
             <Box>{e.description}</Box>

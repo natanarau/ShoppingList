@@ -7,8 +7,8 @@ type Notificationtypes = {
 type DataModalType = {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  code: string;
-  setCode: React.Dispatch<React.SetStateAction<string>>;
+  code: any;
+  setCode: React.Dispatch<React.SetStateAction<any>>;
 };
 
 const NotificationContext = React.createContext({} as DataModalType);
