@@ -5,12 +5,13 @@ import React from "react";
 import { SiderBarMenuList } from "./SiderBarMenu.list";
 import * as S from "./styles";
 import { useRouter } from "next/router";
+import { useAuth } from "@/hooks/useAuth";
 
 type Props = {};
 
 export default function SideBarMenu({}: Props) {
   const { route } = useRouter();
-
+  
   return (
     <>
       <S.BoxMenu>

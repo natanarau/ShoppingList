@@ -1,4 +1,3 @@
-import Sidebar from "@/Components/Sidebar";
 import SquareField from "@/Components/SquareField";
 import Protected from "@/layout/Protected";
 import { Box } from "@mui/material";

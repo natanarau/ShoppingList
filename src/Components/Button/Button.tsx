@@ -8,6 +8,7 @@ type ButtonTypes = {
   sx?: any;
   type?: "button" | "submit" | "reset" | undefined;
   disabled?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
 };
 
 export default function Button({ disabled, children, ...props }: ButtonTypes) {

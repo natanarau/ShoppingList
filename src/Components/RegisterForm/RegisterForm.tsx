@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import React from "react";
 import Input from "@/Components/Input";
 import * as S from "./styles";
@@ -11,6 +11,7 @@ import {
 import { auth } from "@/service/firebase";
 import { useNotifications } from "@/hooks/useNotifications";
 import Notifications from "../Notification";
+import Link from "next/link";
 
 type Props = {};
 
@@ -19,11 +20,12 @@ export default function RegisterForm({}: Props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordConfirm, setPasswordConfirm] = React.useState("");
-  const { setVisible, setCode, setToken } = useNotifications();
+  const { setVisible, setCode, code } = useNotifications();
+  const [loading, setLoading] = React.useState(false);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setLoading(true);
     await createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         const user = auth.currentUser;
@@ -35,11 +37,17 @@ export default function RegisterForm({}: Props) {
             setCode("success");
             setVisible(true);
           });
+          setLoading(false);
+          setName("");
+          setEmail("");
+          setPassword("");
+          setPasswordConfirm("");
         }
       })
       .catch((error) => {
         setCode(error.code);
         setVisible(true);
+        setLoading(false);
       });
   };
 
@@ -81,27 +89,32 @@ export default function RegisterForm({}: Props) {
           onChange={(e) => setPasswordConfirm(e.target.value)}
           value={passwordConfirm}
         />
-        {password != passwordConfirm && (
+        {password && passwordConfirm && password != passwordConfirm && (
           <Box component="p" color="red">
             Senhas não confere
           </Box>
         )}
-        <Button
-          disabled={
-            !email ||
-            !password ||
-            !passwordConfirm ||
-            password !== passwordConfirm
-          }
-          type="submit"
-          variant="contained"
-          sx={{
-            backgroundColor: "info.main",
-            ":hover": { backgroundColor: "info.light" },
-          }}
-        >
-          Cadastrar
-        </Button>
+        <S.BoxSubmit>
+          <Button
+            disabled={
+              !email ||
+              !password ||
+              !passwordConfirm ||
+              password !== passwordConfirm
+            }
+            type="submit"
+            variant="contained"
+            sx={{
+              width: "100%",
+              maxWidth: "150px",
+              backgroundColor: "info.main",
+              ":hover": { backgroundColor: "info.light" },
+            }}
+          >
+            {!loading ? "Cadastrar" : <CircularProgress size="24px" />}
+          </Button>
+          {code === "success" && <Link href="/login">Entrar no login</Link>}
+        </S.BoxSubmit>
       </S.RegisterFormBox>
       <Notifications email={email} />
     </S.Wrapper>

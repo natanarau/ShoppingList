@@ -1,6 +1,6 @@
 import React from "react";
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { auth } from "@/service/firebase";
 
 type AuthenticationType = {
   children: React.ReactNode;
@@ -9,21 +9,20 @@ type AuthenticationType = {
 const AuthenticationContext = React.createContext({} as any);
 
 const AuthenticationProvider = ({ children }: AuthenticationType) => {
-  const [token, setToken] = React.useState(Cookies.get("authToken"));
+  const [loggeding, setLoggeding] = React.useState(false)
   const { push } = useRouter();
 
-  React.useEffect(() => {
-    if (token) {
-      push("/");
+  auth.onAuthStateChanged((user) => {
+    if(user) {
+      setLoggeding(true)
     } else {
-      Cookies.remove("authToken");
-      push("/login");
+      push('/login')
     }
-  }, [token]);
-
+  })
+  
   return (
-    <AuthenticationContext.Provider value={{ token, setToken }}>
-      {token && children}
+    <AuthenticationContext.Provider value={{ loggeding }}>
+      {loggeding && children}
     </AuthenticationContext.Provider>
   );
 };
