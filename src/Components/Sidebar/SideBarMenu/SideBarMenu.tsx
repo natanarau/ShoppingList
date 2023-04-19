@@ -5,7 +5,6 @@ import React from "react";
 import { SiderBarMenuList } from "./SiderBarMenu.list";
 import * as S from "./styles";
 import { useRouter } from "next/router";
-import { useAuth } from "@/hooks/useAuth";
 
 type Props = {};
 
@@ -19,7 +18,7 @@ export default function SideBarMenu({}: Props) {
           <Box
             component="img"
             alt="Logo do sistema"
-            src="images/logo.png"
+            src="images/logo-shopping-list.png"
             width="100px"
             display="block"
             m="10px auto 20px auto"
@@ -44,8 +43,8 @@ export default function SideBarMenu({}: Props) {
           ))}
         </Box>
         <Button
-          variant="outlined"
-          sx={{ borderColor: "info.main", color: "info.main", margin: "10px" }}
+          variant="contained"
+          sx={{ margin: "10px" }}
         >
           Sair
         </Button>

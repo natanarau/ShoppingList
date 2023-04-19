@@ -5,12 +5,13 @@ export const palette: PaletteOptions = {
     main: "#fff",
   },
   secondary: {
-    main: "#f37413"
+    main: "#f37413",
   },
-  common: {
-  },
+  common: {},
 
   grey: {
+    100: "#FFFFFF",
+    200: "#EEEEEE",
     300: "#DCDCDC",
     400: "#C0C0C0",
     500: "#989898",
@@ -26,12 +27,11 @@ export const palette: PaletteOptions = {
   info: {
     main: "#F7A900",
     light: "#edda42",
-
   },
   success: {
     main: "#99cc33",
   },
   error: {
-    main: "#cc3300"
-  }
+    main: "#cc3300",
+  },
 };

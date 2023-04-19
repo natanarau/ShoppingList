@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import * as S from "./styles";
+import Button from "../Button";
 
 type NotificatioType = {
   email?: string;
@@ -12,7 +13,7 @@ type NotificatioType = {
 
 export const Notifications = ({ email }: NotificatioType) => {
   const { visible, setVisible, code } = useNotifications();
-  
+
   const data = [
     {
       code: "auth/email-already-in-use",
@@ -68,7 +69,12 @@ export const Notifications = ({ email }: NotificatioType) => {
     {
       code: "auth/user-disabled",
       title: "Atenção!",
-      description: <>Sua conta está bloqueada, entre em contato com o administrador do sistema.</>,
+      description: (
+        <>
+          Sua conta está bloqueada, entre em contato com o administrador do
+          sistema.
+        </>
+      ),
       icon: <WarningAmberIcon color="error" />,
     },
   ];
@@ -79,10 +85,17 @@ export const Notifications = ({ email }: NotificatioType) => {
     <Modal open={visible} onClose={() => setVisible(false)}>
       <>
         {unique.map((e, index) => (
-          <Box key={index} display="grid" justifyItems="center">
-            <S.BoxIcon>{e.icon}</S.BoxIcon>
-            <Box component="h1">{e.title}</Box>
-            <Box>{e.description}</Box>
+          <Box key={index} display="grid" justifyItems="center" gap="20px">
+            <Box display="flex" gap="20px" alignItems="center">
+              <S.BoxIcon>{e.icon}</S.BoxIcon>
+              <Box component="h1" m={0}>
+                {e.title}
+              </Box>
+            </Box>
+            <Box maxWidth="350px">{e.description}</Box>
+            <Button variant="contained" onClick={() => setVisible(false)}>
+              Entendi
+            </Button>
           </Box>
         ))}
       </>

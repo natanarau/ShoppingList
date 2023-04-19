@@ -17,15 +17,9 @@ export default function Modal({ open, onClose, children }: ModalTypes) {
       sx={{ display: "grid", justifyContent: "center", alignContent: "center" }}
     >
       <S.Wrapper>
-        <CloseIcon
-          sx={{
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            cursor: "pointer",
-          }}
-          onClick={onClose}
-        />
+        <S.BoxButton onClick={onClose}>
+          <CloseIcon />
+        </S.BoxButton>
         {children}
       </S.Wrapper>
     </ModalMui>

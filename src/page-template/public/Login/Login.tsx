@@ -7,12 +7,19 @@ type Props = {};
 
 export default function Login({}: Props) {
   return (
-    <Box display="grid" data-id="form-container" gap="30px" mt="20px">
+    <Box
+      display="grid"
+      data-id="form-container"
+      gap="30px"
+      mt="20px"
+      alignContent="center"
+      height="90vh"
+    >
       <Box display="grid" justifyItems="center">
         <Box
           component="img"
           alt="Logo do sistema"
-          src="/images/logo.png"
+          src="/images/logo-shopping-list.png"
           width="100%"
           maxWidth="200px"
         />
