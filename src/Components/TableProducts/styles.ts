@@ -8,8 +8,9 @@ export const Session = styled(Box)`
 `;
 
 export const Wrapper = styled(Box)`
-  display: flex;
+  display: grid;
   justify-content: space-between;
+  grid-template-columns: 1fr repeat(3, 2fr) 1fr;
   align-items: center;
   gap: 10px;
   height: 50px;
@@ -30,9 +31,9 @@ export const ItemsTitles = styled.h2`
 `;
 
 export const Items = styled.h4`
+  margin: 10px;
+  padding: 0;
   color: #fff;
   font-weight: 400;
   font-size: 14px;
-  margin: 0;
-  padding: 0;
 `;

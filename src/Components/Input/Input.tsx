@@ -7,16 +7,18 @@ export const Input = ({
   type,
   value,
   onChange,
+  ...props
 }: InputBaseProps) => {
   return (
     <>
       <Box display="grid" gap={1} width="100%">
-        <S.Label>{title}</S.Label>
+        <S.Label className={props.className}>{title}</S.Label>
         <S.Input
           placeholder={placeholder}
           type={type}
           value={value}
           onChange={onChange}
+          {...props}
         />
       </Box>
     </>

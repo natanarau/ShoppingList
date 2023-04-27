@@ -1,6 +1,6 @@
 import React from "react";
 import Protected from "@/layout/Protected";
-import TableProducts from "./TableProducts/TableProducts";
+import TableProducts from "@/Components/TableProducts/TableProducts";
 
 type Props = {};
 

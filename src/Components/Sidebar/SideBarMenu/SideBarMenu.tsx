@@ -19,7 +19,7 @@ export default function SideBarMenu({}: Props) {
             component="img"
             alt="Logo do sistema"
             src="images/logo-shopping-list.png"
-            width="100px"
+            width="200px"
             display="block"
             m="10px auto 20px auto"
           />

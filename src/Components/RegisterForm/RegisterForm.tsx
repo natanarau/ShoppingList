@@ -8,10 +8,11 @@ import {
   updateProfile,
   sendEmailVerification,
 } from "firebase/auth";
-import { auth } from "@/service/firebase";
+import { auth, db } from "@/service/firebase";
 import { useNotifications } from "@/hooks/useNotifications";
 import Notifications from "../Notification";
 import Link from "next/link";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 type Props = {};
 
@@ -33,6 +34,13 @@ export default function RegisterForm({}: Props) {
           updateProfile(user, {
             displayName: name,
           });
+          addDoc(collection(db, "client"), {
+            createdAt: serverTimestamp(),
+            email: email,
+            fastName: name,
+            fullName: name,
+            userId: user.uid
+          })
           sendEmailVerification(user).then(() => {
             setCode("success");
             setVisible(true);
@@ -55,10 +63,9 @@ export default function RegisterForm({}: Props) {
     <S.Wrapper>
       <Box
         component="img"
-        src="images/logo.png"
+        src="images/logo-shopping-list.png"
         alt="Logo do sistema"
-        width="150px"
-        height="120px"
+        maxWidth="400px"
       />
       <S.RegisterFormBox onSubmit={(e) => handleLogin(e)}>
         <Input
@@ -67,6 +74,7 @@ export default function RegisterForm({}: Props) {
           placeholder="Digite seu nome"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          className="dark"
         />
         <Input
           type="email"
@@ -74,6 +82,7 @@ export default function RegisterForm({}: Props) {
           placeholder="mail@mail.com"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          className="dark"
         />
         <Input
           type="password"
@@ -81,6 +90,7 @@ export default function RegisterForm({}: Props) {
           placeholder="Digite uma senha segura"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          className="dark"
         />
         <Input
           type="password"
@@ -88,6 +98,7 @@ export default function RegisterForm({}: Props) {
           placeholder="Digite sua senha novamente"
           onChange={(e) => setPasswordConfirm(e.target.value)}
           value={passwordConfirm}
+          className="dark"
         />
         {password && passwordConfirm && password != passwordConfirm && (
           <Box component="p" color="red">

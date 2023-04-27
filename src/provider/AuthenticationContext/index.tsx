@@ -12,13 +12,16 @@ const AuthenticationProvider = ({ children }: AuthenticationType) => {
   const [loggeding, setLoggeding] = React.useState(false)
   const { push } = useRouter();
 
-  auth.onAuthStateChanged((user) => {
-    if(user) {
-      setLoggeding(true)
-    } else {
-      push('/login')
-    }
-  })
+  React.useEffect(() =>{
+    auth.onAuthStateChanged((user) => {
+      if(user) {
+        setLoggeding(true)
+      } else {
+        push('/login')
+      }
+    })
+  }, [])
+  
   
   return (
     <AuthenticationContext.Provider value={{ loggeding }}>

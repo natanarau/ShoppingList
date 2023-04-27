@@ -12,8 +12,8 @@ import { useAuth } from "@/hooks/useAuth";
 
 export default function Header() {
   const [settingsVisible, setSettingsVisible] = React.useState(false);
-  const { Logout } = useAuth()
-
+  const { Logout, userOn } = useAuth()
+  
   return (
     <SquareField
       height="30px"
@@ -40,7 +40,7 @@ export default function Header() {
           fontWeight={600}
           m="0"
         >
-          Natã Araujo
+          {userOn?.displayName}
         </Box>
         <SettingsIcon
           sx={{

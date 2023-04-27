@@ -25,8 +25,8 @@ export const palette: PaletteOptions = {
     secondary: "#7C7C8A",
   },
   info: {
-    main: "#F7A900",
-    light: "#edda42",
+    main: "#1AEBD2",
+    light: "#1cb8c9",
   },
   success: {
     main: "#99cc33",

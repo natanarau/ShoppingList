@@ -34,12 +34,14 @@ export default function LoginForm() {
             title="E-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="dark"
           />
           <Input
             type="password"
             title="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="dark"
           />
           <S.BoxLink>
             <Link href="/registrar">Me cadastrar</Link>

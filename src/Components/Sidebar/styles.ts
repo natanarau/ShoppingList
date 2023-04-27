@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 
 export const Content = styled(Box)`
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   background-color: ${theme.palette.grey[800]};

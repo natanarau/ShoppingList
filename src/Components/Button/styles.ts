@@ -9,15 +9,17 @@ export const Button = styled(ButtonUi)`
     switch (props.variant) {
       case "contained":
         return css`
-          background-color: ${theme.palette.info.main};
+          background-color: ${theme.palette.info.main} !important;
           &:hover {
-            background-color: ${theme.palette.info.main};
+            background-color: ${theme.palette.info.main} !important;
             opacity: 80%;
           }
         `;
       case "outlined":
         return css`
-          background-color: ${theme.palette.info.main};
+          background-color: transparent !important;
+          border-color: ${theme.palette.info.main} !important;
+          color: ${theme.palette.info.light} !important;
           &:hover {
             background-color: ${theme.palette.info.main};
             opacity: 80%;

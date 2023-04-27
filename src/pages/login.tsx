@@ -8,11 +8,5 @@ type Props = {};
 export default function index({}: Props) {
   const { push } = useRouter();
 
-  React.useEffect(() => {
-    if (Cookies.get("authToken")) {
-      push("/");
-    }
-  }, []);
-
   return <Login />;
 }

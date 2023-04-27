@@ -1,19 +1,16 @@
 import React from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/service/firebase";
 import { useNotifications } from "@/hooks/useNotifications";
 import { AuthenticationContext } from "@/provider/AuthenticationContext";
 import { useRouter } from "next/router";
-
-type AuthTypes = {
-  email: string;
-  password: string;
-};
+import { AuthTypes, AuthUserType } from "@/types";
 
 const useAuth = () => {
   const { setCode, setVisible } = useNotifications();
   const { push } = useRouter();
   const [loading, setLoading] = React.useState(false);
+  const [userOn, setUserOn] = React.useState<AuthUserType>();
   const { loggeding } = React.useContext(AuthenticationContext);
 
   const Login = ({ email, password }: AuthTypes) => {
@@ -47,7 +44,21 @@ const useAuth = () => {
     auth.signOut();
   };
 
-  return { Login, loading, loggeding, Logout };
+  React.useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserOn({
+          displayName: user?.displayName,
+          email: user?.email,
+          id: user?.uid,
+        });
+      } else {
+        setUserOn(undefined);
+      }
+    });
+  }, [userOn?.id]);
+
+  return { Login, loading, loggeding, Logout, userOn };
 };
 
 export { useAuth };

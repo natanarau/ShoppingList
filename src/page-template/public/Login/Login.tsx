@@ -21,7 +21,7 @@ export default function Login({}: Props) {
           alt="Logo do sistema"
           src="/images/logo-shopping-list.png"
           width="100%"
-          maxWidth="200px"
+          maxWidth="400px"
         />
         <Box component="h4" color="text.secondary">
           Entre com seu usuario e senha
