@@ -11,15 +11,15 @@ const useAuth = () => {
   const { push } = useRouter();
   const [loading, setLoading] = React.useState(false);
   const [userOn, setUserOn] = React.useState<AuthUserType>();
-  const { loggeding } = React.useContext(AuthenticationContext);
+  const { loggeding, setLoggeding } = React.useContext(AuthenticationContext);
 
   const Login = ({ email, password }: AuthTypes) => {
     setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         userCredential.user
-          .getIdToken(true)
-          .then((idToken) => {
+        .getIdToken(true)
+        .then((idToken) => {
             if (userCredential.user.emailVerified) {
               setLoading(false);
               push("/");
@@ -42,6 +42,7 @@ const useAuth = () => {
 
   const Logout = () => {
     auth.signOut();
+    setLoggeding(false)
   };
 
   React.useEffect(() => {

@@ -1,6 +1,6 @@
 import Header from "@/Components/Header";
 import Sidebar from "@/Components/Sidebar";
-import { AuthenticationProvider } from "@/provider/AuthenticationContext";
+import { useAuth } from "@/hooks/useAuth";
 import { Box } from "@mui/material";
 import React from "react";
 
@@ -9,8 +9,13 @@ type Protectedtypes = {
 };
 
 export default function Protected({ children }: Protectedtypes) {
+  const { loggeding } = useAuth()
+
+  if(!loggeding) {
+    return <></>
+  }
+
   return (
-    <AuthenticationProvider>
       <Box display="flex">
         <Sidebar />
         <Box
@@ -18,14 +23,11 @@ export default function Protected({ children }: Protectedtypes) {
           alignContent="flex-start"
           gap="20px"
           data-id="content"
-          maxWidth="1000px"
-          width="100%"
           m="20px auto"
         >
           <Header />
           {children}
         </Box>
       </Box>
-    </AuthenticationProvider>
   );
 }

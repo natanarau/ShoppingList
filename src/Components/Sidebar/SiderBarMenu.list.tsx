@@ -14,21 +14,21 @@ export const SiderBarMenuList: MenuListTypes[] = [
   {
     title: "Dashboar",
     path: "/",
-    icon: <HomeIcon />,
+    icon: <HomeIcon fontSize="large" />,
   },
   {
     title: "Alimentos",
     path: "/alimentos",
-    icon: <EggAltIcon />,
+    icon: <EggAltIcon fontSize="large" />,
   },
   {
     title: "Lista de compras",
     path: "/lista-de-compras",
-    icon: <PlaylistPlayIcon />,
+    icon: <PlaylistPlayIcon fontSize="large" />,
   },
   {
     title: "Mercados",
     path: "/lista-de-mercados",
-    icon: <StorefrontIcon />,
+    icon: <StorefrontIcon fontSize="large" />,
   },
 ];

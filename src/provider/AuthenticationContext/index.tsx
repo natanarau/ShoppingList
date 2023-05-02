@@ -9,23 +9,25 @@ type AuthenticationType = {
 const AuthenticationContext = React.createContext({} as any);
 
 const AuthenticationProvider = ({ children }: AuthenticationType) => {
-  const [loggeding, setLoggeding] = React.useState(false)
+  const [loading, setLoading] = React.useState(true);
+  const [loggeding, setLoggeding] = React.useState(false);
   const { push } = useRouter();
 
-  React.useEffect(() =>{
+  React.useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if(user) {
-        setLoggeding(true)
+      if (user) {
+        setLoggeding(true);
       } else {
-        push('/login')
+        setLoggeding(false);
+        push("/login");
       }
-    })
-  }, [])
-  
+    });
+    setLoading(false);
+  }, [loggeding]);
   
   return (
-    <AuthenticationContext.Provider value={{ loggeding }}>
-      {loggeding && children}
+    <AuthenticationContext.Provider value={{ loggeding, setLoggeding }}>
+      {!loading ? children : "carregando"}
     </AuthenticationContext.Provider>
   );
 };

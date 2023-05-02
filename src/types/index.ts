@@ -26,3 +26,7 @@ export type AutocompleteType = {
   label: string
   className: string;
 }
+
+export interface MenuVisibleType {
+  visible: boolean;
+}
