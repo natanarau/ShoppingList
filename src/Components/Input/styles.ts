@@ -26,7 +26,7 @@ export const Input = styled(InputBase)`
       case "light":
         return css`
           border: none;
-          border-bottom: 1px solid ${theme.palette.grey[700]} !important;
+          border-bottom: 1px solid ${theme.palette.grey[400]} !important;
           background-color: transparent !important;
           color: ${theme.palette.text.secondary} !important;
           font-size: 1rem;

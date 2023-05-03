@@ -21,9 +21,12 @@ export default function Protected({ children }: Protectedtypes) {
         <Box
           display="grid"
           alignContent="flex-start"
-          gap="20px"
+          gap="30px"
           data-id="content"
           m="20px auto"
+          p="20px"
+          maxWidth="1000px"
+          flex={1}
         >
           <Header />
           {children}

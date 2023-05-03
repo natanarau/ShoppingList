@@ -5,8 +5,6 @@ import styled from "styled-components";
 export const Wrapper = styled(Box)`
   position: relative;
   background-color: ${theme.palette.grey[100]};
-  max-width: 60vw;
-  max-height: 80vh;
   padding: 30px;
   border-radius: 20px;
 `;
@@ -15,7 +13,7 @@ export const BoxButton = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.palette.info.main};
+  background-color: ${theme.palette.grey[200]};
   position: absolute;
   top: 10px;
   right: 10px;

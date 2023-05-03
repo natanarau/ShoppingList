@@ -7,18 +7,33 @@ type ModalTypes = {
   open: boolean;
   children: React.ReactElement;
   onClose: () => void;
+  maxWidth?: string;
+  maxHeight?: string;
 };
 
-export default function Modal({ open, onClose, children }: ModalTypes) {
+export default function Modal({
+  open,
+  onClose,
+  children,
+  maxWidth,
+  maxHeight,
+}: ModalTypes) {
   return (
     <ModalMui
       open={open}
       onClose={onClose}
-      sx={{ display: "grid", justifyContent: "center", alignContent: "center" }}
+      sx={{
+        display: "grid",
+        justifyContent: "center",
+        alignContent: "center",
+      }}
     >
-      <S.Wrapper>
+      <S.Wrapper
+        width="80vw"
+        maxWidth={maxWidth}
+      >
         <S.BoxButton onClick={onClose}>
-          <CloseIcon />
+          <CloseIcon color="action" />
         </S.BoxButton>
         {children}
       </S.Wrapper>

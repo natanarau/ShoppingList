@@ -1,12 +1,12 @@
 import Button from "@/Components/Button";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 import { SiderBarMenuList } from "./SiderBarMenu.list";
 import * as S from "./styles";
 import { useRouter } from "next/router";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export default function SideBarMenu() {
   const { route } = useRouter();
@@ -67,10 +67,17 @@ export default function SideBarMenu() {
         </S.BoxMenu>
       </S.Session>
       <S.BoxMenuMobile>
-        <S.ButtonAddList><AddShoppingCartIcon fontSize="large"/></S.ButtonAddList>
+        <S.ButtonAddList>
+          <AddShoppingCartIcon fontSize="large" />
+        </S.ButtonAddList>
         {SiderBarMenuList.map((value, index) => (
           <Link key={index} href={value.path}>
-            {value.icon}
+            <Box display="grid" justifyItems="center">
+              {value.icon}
+              <Typography typography="label" fontSize="12px">
+                {value.title}
+              </Typography>
+            </Box>
           </Link>
         ))}
       </S.BoxMenuMobile>

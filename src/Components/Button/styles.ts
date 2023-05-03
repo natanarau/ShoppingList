@@ -5,6 +5,7 @@ import theme from "@/theme/theme";
 export const Button = styled(ButtonUi)`
   font-weight: bold;
   transition: 0.3s;
+  text-transform: capitalize !important;
   ${(props) => {
     switch (props.variant) {
       case "contained":

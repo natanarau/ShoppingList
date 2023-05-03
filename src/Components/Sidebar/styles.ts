@@ -46,7 +46,7 @@ export const BoxMenu = styled(Box)`
     display: flex;
     align-items: center;
     font-size: 14px;
-    padding: 10px 10px 10px 20px;
+    padding: 10px;
     gap: 10px;
     text-decoration: none;
     color: ${theme.palette.grey[400]};
@@ -115,6 +115,7 @@ export const BoxMenuMobile = styled(Box)`
 export const ButtonAddList = styled(Box) `
   display: none;
   @media only screen and (max-width: 925px) {
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,7 +125,7 @@ export const ButtonAddList = styled(Box) `
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    position: absolute;
-    top: -20px
+   top: -70px;
+   right: 5px;
   }
 `

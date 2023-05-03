@@ -1,3 +1,6 @@
+import { AutocompleteChangeDetails, AutocompleteChangeReason, AutocompleteInputChangeReason } from "@mui/material";
+import { SyntheticEvent } from "react";
+
 export type DataProps = {
   id: string;
   listName: string;
@@ -25,6 +28,8 @@ export type AuthUserType = {
 export type AutocompleteType = {
   label: string
   className: string;
+  onChange?: any
+  value?: any
 }
 
 export interface MenuVisibleType {
