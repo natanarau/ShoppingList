@@ -13,15 +13,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "@/service/firebase";
 import Modal from "@/Components/Modal";
-import {
-  Autocomplete,
-  AutocompleteRenderInputParams,
-  Backdrop,
-  Box,
-  CircularProgress,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Backdrop, Box, CircularProgress, Typography } from "@mui/material";
 import Input from "@/Components/Input";
 import { useAuth } from "@/hooks/useAuth";
 import "firebase/firestore";
@@ -30,6 +22,7 @@ import { DataProps } from "@/types";
 import { formatarDataHora } from "@/utils";
 import Skeleton from "@mui/material/Skeleton";
 import AutoComplete from "@/Components/AutoComplete";
+import useHash from "@/hooks/useHash";
 
 type Option = {
   id: number;
@@ -40,12 +33,12 @@ export default function ListaDeCompras() {
   const [open, setOpen] = React.useState(false);
   const [listName, setListName] = React.useState("");
   const [marketplace, setMarketplace] = React.useState<Option | null>(null);
-  const [marketplaceValue, setMarketplaceValue] = React.useState("");
   const [alertOpen, setAlertOpen] = React.useState(false);
   const [data, setData] = React.useState<DataProps[]>([]);
   const [openBackdrop, setOpenBackdrop] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const { userOn } = useAuth();
+  const { mQuery } = useHash();
 
   const handleClose = () => {
     setOpen(false);
@@ -183,6 +176,10 @@ export default function ListaDeCompras() {
               <Button
                 variant="outlined"
                 sx={{ maxWidth: "145px", fontSize: "12px" }}
+                onClick={() => {
+                  mQuery("cadastrar-mercado");
+                  handleClose();
+                }}
               >
                 Cadastrar Mercado
               </Button>
@@ -192,9 +189,9 @@ export default function ListaDeCompras() {
             variant="contained"
             onClick={createList}
             disabled={!marketplace || !listName}
-            sx={{maxWidth: "150px", width: "100%", margin: "auto"}}
+            sx={{ maxWidth: "150px", width: "100%", margin: "auto" }}
           >
-            Salvar
+            Continuar
           </Button>
         </Box>
       </Modal>

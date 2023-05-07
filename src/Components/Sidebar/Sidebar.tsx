@@ -71,7 +71,7 @@ export default function SideBarMenu() {
           <AddShoppingCartIcon fontSize="large" />
         </S.ButtonAddList>
         {SiderBarMenuList.map((value, index) => (
-          <Link key={index} href={value.path}>
+          <Link key={index} href={value.path} className={`${value.path === route && "borderEffectMobile"}`}>
             <Box display="grid" justifyItems="center">
               {value.icon}
               <Typography typography="label" fontSize="12px">

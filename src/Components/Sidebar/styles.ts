@@ -109,10 +109,14 @@ export const BoxMenuMobile = styled(Box)`
         color: ${theme.palette.grey[200]};
       }
     }
+    .borderEffectMobile {
+      color: ${theme.palette.grey[200]};
+      border-bottom: 10px solid ${theme.palette.info.main};
+    }
   }
 `;
 
-export const ButtonAddList = styled(Box) `
+export const ButtonAddList = styled(Box)`
   display: none;
   @media only screen and (max-width: 925px) {
     position: absolute;
@@ -125,7 +129,7 @@ export const ButtonAddList = styled(Box) `
     width: 60px;
     height: 60px;
     border-radius: 50%;
-   top: -70px;
-   right: 5px;
+    top: -70px;
+    right: 5px;
   }
-`
+`;

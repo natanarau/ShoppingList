@@ -1,5 +1,4 @@
-import { AutocompleteChangeDetails, AutocompleteChangeReason, AutocompleteInputChangeReason } from "@mui/material";
-import { SyntheticEvent } from "react";
+import { ChangeEvent, SyntheticEvent } from "react";
 
 export type DataProps = {
   id: string;
@@ -26,12 +25,25 @@ export type AuthUserType = {
 };
 
 export type AutocompleteType = {
-  label: string
+  label: string;
   className: string;
-  onChange?: any
-  value?: any
-}
-
+  onChange?: any;
+  value?: any;
+};
 export interface MenuVisibleType {
   visible: boolean;
 }
+
+export type HashType = {
+  hash: string;
+  setHash: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export type SwitchType = {
+  className: "light" | "dark";
+  title: string;
+  onChange?: ((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
+  checked?: boolean
+};
+
+
