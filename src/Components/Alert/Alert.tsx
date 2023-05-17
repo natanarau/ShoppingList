@@ -9,15 +9,7 @@ import {
 } from "@mui/material";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-
-type AlertProps = {
-  title: string;
-  description: string;
-  icon: string;
-  open: boolean;
-  children: React.ReactNode;
-  cancel: () => void;
-};
+import { AlertProps } from "@/types";
 
 export default function Alert({
   title,

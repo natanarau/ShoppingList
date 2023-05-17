@@ -33,6 +33,7 @@ export default function ListaDeCompras() {
   const [open, setOpen] = React.useState(false);
   const [listName, setListName] = React.useState("");
   const [marketplace, setMarketplace] = React.useState<Option | null>(null);
+  const [dataMarketplace, setDataMarketplace] = React.useState<any>(null);
   const [alertOpen, setAlertOpen] = React.useState(false);
   const [data, setData] = React.useState<DataProps[]>([]);
   const [openBackdrop, setOpenBackdrop] = React.useState(false);
@@ -104,6 +105,29 @@ export default function ListaDeCompras() {
     handlerList();
   }, [userOn, alertOpen]);
 
+  React.useEffect(() => {
+    const handlerMarketplace = async () => {
+      const userRef = doc(db, "marketplace", `${userOn?.id}`);
+      const listsRef = collection(userRef, "marketplace");
+      const q = query(listsRef, orderBy("createdAt", "desc"));
+      await getDocs(q)
+        .then((doc) => {
+          const dataMarket: any = [];
+          doc.forEach((doc) => {
+            dataMarket.push({
+              id: doc.id,
+              label: doc.data().name
+            });
+          });
+          setDataMarketplace(dataMarket);
+          setLoading(false);
+        })
+        .catch((err) => console.log(err));
+    };
+    handlerMarketplace();
+  }, [userOn, alertOpen]);
+
+
   const handleChange = (event: any, newValue: Option | null) => {
     setMarketplace(newValue);
   };
@@ -134,17 +158,6 @@ export default function ListaDeCompras() {
           </Typography>
         )}
       </Box>
-      <Alert
-        title="Sucesso"
-        description="Lista criada com sucesso"
-        icon="success"
-        open={alertOpen}
-        cancel={() => setAlertOpen(false)}
-      >
-        <Button variant="contained" onClick={() => setAlertOpen(false)}>
-          ok
-        </Button>
-      </Alert>
       <Modal open={open} onClose={handleClose} maxWidth="350px">
         <Box display="flex" flexDirection="column" gap="35px">
           <Typography typography="h1" fontSize="30px" fontWeight={700}>
@@ -171,6 +184,7 @@ export default function ListaDeCompras() {
                 className="light"
                 value={marketplace}
                 onChange={handleChange}
+                items={dataMarketplace}
               />
 
               <Button
@@ -178,7 +192,6 @@ export default function ListaDeCompras() {
                 sx={{ maxWidth: "145px", fontSize: "12px" }}
                 onClick={() => {
                   mQuery("cadastrar-mercado");
-                  handleClose();
                 }}
               >
                 Cadastrar Mercado

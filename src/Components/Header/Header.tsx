@@ -16,7 +16,7 @@ export default function Header() {
   const [settingsVisible, setSettingsVisible] = React.useState(false);
   const { Logout, userOn } = useAuth();
   const { hash, mRemoveQuery } = useHash();
-  console.log(hash);
+  
   return (
     <>
       <SquareField

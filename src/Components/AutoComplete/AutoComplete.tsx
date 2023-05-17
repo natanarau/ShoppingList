@@ -4,19 +4,7 @@ import { Box, TextField } from "@mui/material";
 import theme from "@/theme/theme";
 import React from "react";
 
-type Option = {
-  id: number;
-  label: string;
-}
-
 export default function AutoComplete({ ...props }: AutocompleteType) {
-  const opt : Option[]= [
-    { id: 1, label: "Cidade Atacadão" },
-    { id: 2, label: "Atacadão" },
-    { id: 3, label: "Favorito" },
-    { id: 4, label: "Rede mais" },
-  ];
-
 
   return (
     <Box>
@@ -24,7 +12,7 @@ export default function AutoComplete({ ...props }: AutocompleteType) {
       <S.Autocomplete
         id="combo-box-demo"
         placeholder="teste"
-        options={opt}
+        options={props.items}
         isOptionEqualToValue={(option: any, value: any | null) => option.id === value?.id}
 
         getOptionLabel={(option: any) => option.label}

@@ -1,10 +1,8 @@
-import Modal from "@/Components/Modal";
 import { HashContext } from "@/provider/HashContext";
 import { useRouter } from "next/router";
 import React from "react";
 
 export const useHash = () => {
-  const [queryModal, setQueryModal] = React.useState("");
   const { hash, setHash } = React.useContext(HashContext);
   const router = useRouter();
 
